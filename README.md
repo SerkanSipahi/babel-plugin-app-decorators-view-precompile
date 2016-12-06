@@ -28,7 +28,8 @@ $ npm install babel-plugin-app-decorators-view-precompile --save
 ```js
 "plugins": [
     ["app-decorators-view-precompile", {
-        "compiler": "handlebars"
+        "engine": "handlebars",
+        "regex": /\{\{.*?\}\}/
     }]
 ]
 ```
@@ -54,7 +55,7 @@ Input:
 ```js
 @view(`
     {{#if foo}}<div>Hello World</div>
-    {{else}
+    {{else}}
         <div>hello Mars</div>
     {{/if}}
 `)
@@ -64,15 +65,29 @@ class Foo {
 ```
 Output:
 ```js
-@view({"1":function(container,depth0,helpers,partials,data) {
-          return "<div>Hello World</div>";
-      },"3":function(container,depth0,helpers,partials,data) {
-          return "<div>hello Mars</div>";
-      },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+@view(function() {
+    return {
+        "1": function(container, depth0, helpers, partials, data) {
+          return "<div>Hello World</div>\n";
+        },
+        "3": function(container, depth0, helpers, partials, data) {
+          return "        <div>hello Mars</div>\n";
+        },
+        "compiler": [7, ">= 4.0.0"],
+        "main": function(container, depth0, helpers, partials, data) {
           var stack1;
-      
-        return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.foo : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "");
-},"useData":true})
+        
+          return "\n    " + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {}, (depth0 != null ? depth0.foo : depth0), {
+              "name": "if",
+              "hash": {},
+              "fn": container.program(1, data, 0),
+              "inverse": container.program(3, data, 0),
+              "data": data
+          })) != null ? stack1 : "");
+        },
+        "useData": true
+    }
+})
 class Foo {
 
 }
