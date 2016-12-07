@@ -9,8 +9,7 @@ function trim(str) {
 }
 
 const defaultCompilerOptions = {
-    "engine": "handlebars",
-    "regex": /\{\{.*?\}\}/,
+    "engine": "handlebars"
 };
 
 function transformCode(code, options = defaultCompilerOptions){

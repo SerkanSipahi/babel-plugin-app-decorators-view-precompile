@@ -2,6 +2,12 @@ import * as t from "babel-types";
 import template from 'babel-template';
 import handlebars from 'handlebars';
 
+let engines = {
+    handlebars: {
+        regex: /\{\{.*?\}\}/,
+    }
+};
+
 /**
  * getComponentName
  * @returns {string}
@@ -75,7 +81,8 @@ function plugin () {
         visitor: {
             Decorator(path, { opts }){
 
-                let { engine, regex } = opts;
+                let { engine } = opts;
+                let { regex } = engines[engine];
 
                 let componentName = path::getComponentName('view');
                 if(componentName !== 'view'){
