@@ -28,8 +28,7 @@ $ npm install babel-plugin-app-decorators-view-precompile --save
 ```js
 "plugins": [
     ["app-decorators-view-precompile", {
-        "engine": "handlebars",
-        "regex": /\{\{.*?\}\}/
+        "engine": "handlebars"
     }]
 ]
 ```
