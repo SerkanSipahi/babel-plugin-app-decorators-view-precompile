@@ -9,11 +9,22 @@ let engines = {
 };
 
 /**
- * getComponentName
- * @returns {string}
+ * getDecorator
+ * @param decoratorName {string}
+ * @returns {*}
  */
-let getComponentName = function(){
-    return this.node.expression.callee.name;
+let getDecorator = function(decoratorName) {
+
+    if(!this.node.decorators){
+        return [];
+    }
+
+    return this.node.decorators.filter(deco => {
+        let { name } = deco.expression.callee;
+        if(name === decoratorName){
+            return true;
+        }
+    });
 };
 
 /**
@@ -24,7 +35,7 @@ let getTemplate = function(){
 
     let statement = { error: null, template: null };
 
-    let args = this.node.expression.arguments;
+    let args = this.expression.arguments;
     if(!args.length) {
         return statement;
     }
@@ -79,17 +90,17 @@ function plugin () {
 
     return {
         visitor: {
-            Decorator(path, { opts }){
+            ClassDeclaration(path, { opts }){
 
                 let { engine } = opts;
                 let { regex } = engines[engine];
 
-                let componentName = path::getComponentName('view');
-                if(componentName !== 'view'){
+                let [ component ] = path::getDecorator('view');
+                if(!component){
                     return;
                 }
 
-                let { error, template } = path::getTemplate();
+                let { error, template } = component::getTemplate();
 
                 if(error){
                     throw new Error(error);
@@ -107,7 +118,7 @@ function plugin () {
                 let precompiled = template::precompile(engine);
                 let ast = precompiled::createAst();
 
-                path.node.expression.arguments.splice(0, 1, ast.expression);
+                component.expression.arguments.splice(0, 1, ast.expression);
             }
         }
     };
