@@ -55,7 +55,7 @@ Input:
 @view(`
     {{#if foo}}<div>Hello World</div>
     {{else}}
-        <div>hello Mars</div>
+        <div>Hello Mars</div>
     {{/if}}
 `)
 class Foo {
@@ -64,28 +64,26 @@ class Foo {
 ```
 Output:
 ```js
-@view(function() {
-    return {
-        "1": function(container, depth0, helpers, partials, data) {
-          return "<div>Hello World</div>\n";
-        },
-        "3": function(container, depth0, helpers, partials, data) {
-          return "        <div>hello Mars</div>\n";
-        },
-        "compiler": [7, ">= 4.0.0"],
-        "main": function(container, depth0, helpers, partials, data) {
-          var stack1;
-        
-          return "\n    " + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {}, (depth0 != null ? depth0.foo : depth0), {
-              "name": "if",
-              "hash": {},
-              "fn": container.program(1, data, 0),
-              "inverse": container.program(3, data, 0),
-              "data": data
-          })) != null ? stack1 : "");
-        },
-        "useData": true
-    }
+@view({
+    "1": function(container, depth0, helpers, partials, data) {
+      return "<div>Hello World</div>\n";
+    },
+    "3": function(container, depth0, helpers, partials, data) {
+      return "        <div>hello Mars</div>\n";
+    },
+    "compiler": [7, ">= 4.0.0"],
+    "main": function(container, depth0, helpers, partials, data) {
+      var stack1;
+    
+      return "\n    " + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {}, (depth0 != null ? depth0.foo : depth0), {
+          "name": "if",
+          "hash": {},
+          "fn": container.program(1, data, 0),
+          "inverse": container.program(3, data, 0),
+          "data": data
+      })) != null ? stack1 : "");
+    },
+    "useData": true
 })
 class Foo {
 

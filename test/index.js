@@ -98,19 +98,17 @@ describe('@view', () => {
             class Foo {}`;
 
         let expected = `
-            @view(function () {
-                return {
-                    "compiler": [7, ">= 4.0.0"],
-                    "main": function (container, depth0, helpers, partials, data) {
-                        var helper;
-                        return "Hello " + container.escapeExpression((helper = (helper = helpers.item || (depth0 != null ? depth0.item : depth0)) != null ? helper : helpers.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {}, {
-                            "name": "item",
-                            "hash": {},
-                            "data": data
-                        }) : helper));
-                    },
-                    "useData": true
-                };
+            @view({
+                "compiler": [7, ">= 4.0.0"],
+                "main": function (container, depth0, helpers, partials, data) {
+                    var helper;
+                    return "Hello " + container.escapeExpression((helper = (helper = helpers.item || (depth0 != null ? depth0.item : depth0)) != null ? helper : helpers.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {}, {
+                        "name": "item",
+                        "hash": {},
+                        "data": data
+                    }) : helper));
+                },
+                "useData": true
             })
             class Foo {}`;
 
@@ -125,19 +123,17 @@ describe('@view', () => {
             class Foo {}`;
 
         let expected = `
-            @view(function () {
-                return {
-                    "compiler": [7, ">= 4.0.0"],
-                    "main": function (container, depth0, helpers, partials, data) {
-                        var helper;
-                        return "Hello " + container.escapeExpression((helper = (helper = helpers.item || (depth0 != null ? depth0.item : depth0)) != null ? helper : helpers.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {}, {
-                            "name": "item",
-                            "hash": {},
-                            "data": data
-                        }) : helper));
-                    },
-                    "useData": true
-                };
+            @view({
+                "compiler": [7, ">= 4.0.0"],
+                "main": function (container, depth0, helpers, partials, data) {
+                    var helper;
+                    return "Hello " + container.escapeExpression((helper = (helper = helpers.item || (depth0 != null ? depth0.item : depth0)) != null ? helper : helpers.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {}, {
+                        "name": "item",
+                        "hash": {},
+                        "data": data
+                    }) : helper));
+                },
+                "useData": true
             })
             class Foo {}`;
 

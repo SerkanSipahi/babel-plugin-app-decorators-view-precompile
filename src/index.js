@@ -64,10 +64,8 @@ let getTemplate = function(){
 let precompile = function(engine){
 
     let preCompiled = null;
-    let template = this;
     if(engine === 'handlebars'){
-        let _preCompiled = handlebars.precompile(template);
-        preCompiled = `(function() { return ${_preCompiled} })`;
+        preCompiled = `(${handlebars.precompile(this)})`;
     }
 
 
