@@ -5,6 +5,7 @@ default:
 	@echo "   make install"
 	@echo "   make test"
 	@echo "   make publish (npm)"
+	@echo "   make clean (remove node_modules and libs/*)"
 	@echo ""
 
 install: clean node_modules
