@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-app-decorators-view-precompile",
   "description": "Babel plugin for app-decorators @view",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.3",
   "author": "Serkan Sipahi <serkan.sipahi@yahoo.de>",
   "main": "lib/index.js",
   "license": "MIT",
