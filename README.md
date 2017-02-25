@@ -1,3 +1,5 @@
+This repository is deprecated. Its moved to: [app-decorators/packages/babel-plugin-app-decorators-view-precompile](https://github.com/SerkanSipahi/app-decorators/tree/master/packages/babel-plugin-app-decorators-view-precompile)
+---
 ## babel-plugin-app-decorators-view-precompile
 Babel Plugin for auto generating code
 
